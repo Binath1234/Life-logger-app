@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Life Logger App</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="save">Save</string>
+    <string name="add_entry">Add Entry</string>
+    <string name="entries">Entries</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="audio">Record Audio</string>
+    <string name="storage_permission_denied">Storage permission denied</string>
+    <string name="camera_permission_denied">Camera permission denied</string>
+    <string name="audio_permission_denied">Audio permission denied</string>
+</resources>

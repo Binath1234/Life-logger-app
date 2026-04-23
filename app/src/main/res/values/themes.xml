@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.PersonalLifeLogger" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- Blue brand color -->
+        <item name="colorPrimary">#2196F3</item>
+        <item name="colorPrimaryDark">#1976D2</item>
+        <item name="colorAccent">#4CAF50</item>
+
+        <!-- Material 3 colors -->
+        <item name="android:colorPrimary">#2196F3</item>
+        <item name="android:colorPrimaryDark">#1976D2</item>
+        <item name="android:colorAccent">#4CAF50</item>
+        <item name="android:windowBackground">#FFFFFF</item>
+    </style>
+</resources>

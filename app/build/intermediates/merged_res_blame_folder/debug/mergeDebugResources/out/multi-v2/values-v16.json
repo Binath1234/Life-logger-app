@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.personallifelogger.app-mergeDebugResources-76:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\aa\\.gradle\\caches\\transforms-4\\70364935b1ea2d825568288b72531379\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    }
+                }
+            ]
+        }
+    ]
+}
