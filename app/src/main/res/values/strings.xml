@@ -12,6 +12,7 @@
     <string name="gallery">Gallery</string>
     <string name="camera">Camera</string>
     <string name="audio">Record Audio</string>
+    <string name="logout">Logout</string>
     <string name="storage_permission_denied">Storage permission denied</string>
     <string name="camera_permission_denied">Camera permission denied</string>
     <string name="audio_permission_denied">Audio permission denied</string>

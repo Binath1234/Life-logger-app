@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="gcm_defaultSenderId" translatable="false">1082837554672</string>
-    <string name="google_api_key" translatable="false">AIzaSyCqRAPZM0YwxFo_hWQsFX1Ew0xXvf_9B9Y</string>
-    <string name="google_app_id" translatable="false">1:1082837554672:android:230c7ffabed7e944707935</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCqRAPZM0YwxFo_hWQsFX1Ew0xXvf_9B9Y</string>
-    <string name="google_storage_bucket" translatable="false">life-logger-fab68.firebasestorage.app</string>
-    <string name="project_id" translatable="false">life-logger-fab68</string>
-</resources>

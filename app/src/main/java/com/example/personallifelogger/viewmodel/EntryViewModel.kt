@@ -2,6 +2,8 @@ package com.example.personallifelogger.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.personallifelogger.LifeLoggerApp
 import com.example.personallifelogger.data.Entry
@@ -26,7 +28,7 @@ class EntryViewModel(application: Application) : AndroidViewModel(application) {
                 title = title,
                 description = description,
                 imageUri = imageUri,
-                audioPath = audioPath,  // Make sure this is included
+                audioPath = audioPath,
                 date = System.currentTimeMillis()
             )
             repository.insert(entry)
@@ -40,4 +42,14 @@ class EntryViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     suspend fun getById(id: Long): Entry? = repository.getById(id)
+}
+
+class EntryViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(EntryViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return EntryViewModel(application) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
 }

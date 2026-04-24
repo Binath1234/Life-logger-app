@@ -1,52 +1,82 @@
 package com.example.personallifelogger.navigation
 
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Logout
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.personallifelogger.R
 import com.example.personallifelogger.ui.screens.AddEntryScreen
 import com.example.personallifelogger.ui.screens.EntryDetailScreen
 import com.example.personallifelogger.ui.screens.HomeScreen
 import com.example.personallifelogger.viewmodel.EntryViewModel
 
-object Routes {
-    const val HOME = "home"
-    const val ADD = "add"
-    const val DETAIL = "detail/{entryId}"
-    fun detail(id: Long) = "detail/$id"
+sealed class Screen(val route: String) {
+    object Home : Screen("home")
+    object AddEntry : Screen("add_entry")
+    object EntryDetail : Screen("entry_detail/{entryId}") {
+        fun passId(id: Long): String = "entry_detail/$id"
+    }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppNavGraph() {
+fun AppNavGraph(
+    entryViewModel: EntryViewModel,
+    onLogout: () -> Unit
+) {
     val navController = rememberNavController()
-    // Single shared ViewModel scoped to the activity
-    val viewModel: EntryViewModel = viewModel()
 
-    NavHost(navController = navController, startDestination = Routes.HOME) {
-        composable(Routes.HOME) {
-            HomeScreen(
-                viewModel = viewModel,
-                onAddClick = { navController.navigate(Routes.ADD) },
-                onEntryClick = { id -> navController.navigate(Routes.detail(id)) }
-            )
+    NavHost(
+        navController = navController,
+        startDestination = Screen.Home.route
+    ) {
+        composable(Screen.Home.route) {
+            Scaffold(
+                topBar = {
+                    TopAppBar(
+                        title = { Text(stringResource(R.string.app_name)) },
+                        actions = {
+                            IconButton(onClick = onLogout) {
+                                Icon(Icons.Default.Logout, contentDescription = "Logout")
+                            }
+                        }
+                    )
+                }
+            ) { paddingValues ->
+                HomeScreen(
+                    viewModel = entryViewModel,
+                    onAddClick = { navController.navigate(Screen.AddEntry.route) },
+                    onEntryClick = { entryId ->
+                        navController.navigate(Screen.EntryDetail.passId(entryId))
+                    },
+                    modifier = Modifier.padding(paddingValues)
+                )
+            }
         }
-        composable(Routes.ADD) {
+
+        composable(Screen.AddEntry.route) {
             AddEntryScreen(
-                viewModel = viewModel,
+                viewModel = entryViewModel,
                 onSaved = { navController.popBackStack() }
             )
         }
+
         composable(
-            route = Routes.DETAIL,
+            route = Screen.EntryDetail.route,
             arguments = listOf(navArgument("entryId") { type = NavType.LongType })
-        ) { backStack ->
-            val id = backStack.arguments?.getLong("entryId") ?: 0L
+        ) { backStackEntry ->
+            val entryId = backStackEntry.arguments?.getLong("entryId") ?: 0L
             EntryDetailScreen(
-                entryId = id,
-                viewModel = viewModel,
+                entryId = entryId,
+                viewModel = entryViewModel,
                 onBack = { navController.popBackStack() }
             )
         }

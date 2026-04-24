@@ -24,7 +24,9 @@ import java.util.Locale
 fun HomeScreen(
     viewModel: EntryViewModel,
     onAddClick: () -> Unit,
-    onEntryClick: (Long) -> Unit
+    onEntryClick: (Long) -> Unit,
+    modifier: Modifier = Modifier
+
 ) {
     val entries by viewModel.entries.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
